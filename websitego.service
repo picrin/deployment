@@ -1,0 +1,11 @@
+[Unit]
+Description=Simple Website in Go
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/websitego
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
