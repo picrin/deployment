@@ -30,7 +30,11 @@ There are drawbacks. If you're targeting multiple distros you have to esentially
 
 ## Tutorial
 
-`websitego.go` contains golang code of a "hello world" web application, which binds to localhost:8080 and displays some text on GET / HTTP request. We show a way to deploy it to any computer running rpm-based distro. This includes fedora, RHEL and CentOS among others. We first build an rpm package, we install it, and then we run it using systemd.
+`websitego.go` contains golang code of a "hello world" web application, which binds to localhost:8080 and displays some text on GET / HTTP request. We show a way to
+* Make an rpm with all development dependencies (everything that is required to build the project).
+* Install it.
+* Make an rpm with the website we want to deploy, again with all dependencies.
+* Deploy it to any computer running an rpm-based distro.
 
 ### Build dependencies (for website developers)
 
@@ -44,9 +48,13 @@ There are drawbacks. If you're targeting multiple distros you have to esentially
 
 ### Build, installation and running
 
-* Run `./makerpm` to build the rpm package. The shell script builds the package, which includes a compiled binary with our website, and a systemd config file, which will instruct systemd how to run the website.
-* Copy the websitego-0.0-1.x86_64.rpm package from the rpm/x86_64 folder wherever you want to install it.
-* Run `dnf install websitego-0.0-1.x86_64.rpm` to install the package with all its dependencies (golang >= 1.0.0)
+* `git clone git@github.com/picrin/deployment.git` to get the project with all the files you need.
+* `dnf install rpm-build` to get rpm-build, which is a tool that lets you build packages for rpm-based linux distributions (fedora, centOS, RHEL).
+* `./makeDevEnvironment` to make an rpm containing all dependencies required to build the project.
+* `dnf install rpm/x86_64/devEnvironment-0.0-1.x86_64.rpm` to install dev environment.
+* `./makerpm` to build the rpm package with the website.
+* Copy the websitego-0.0-1.x86_64.rpm package from the rpm/x86_64 folder wherever you want to install it. Or skip this step to install locally.
+* `dnf install rpm/x86_64/websitego-0.0-1.x86_64.rpm` to install the package with all its dependencies (golang >= 1.0.0)
 * Run `systemctl start websitego` to run the website. It will listen on localhost:8080/
 
 ### Management.
