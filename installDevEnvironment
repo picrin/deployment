@@ -1,0 +1,15 @@
+set -e
+rm -fr rpm/
+mkdir -p rpm/BUILD
+mkdir -p rpm/BUILDROOT/websitego-0.0-1.x86_64/usr/bin/
+mkdir -p rpm/BUILDROOT/websitego-0.0-1.x86_64/usr/lib/systemd/system/
+mkdir -p rpm/SOURCES
+mkdir -p rpm/SPECS
+mkdir -p rpm/SRPMS
+mkdir -p rpm/RPMS
+cp devEnvironment.spec rpm/SPECS
+rm -fr $HOME/rpmbuild
+mv rpm $HOME/rpmbuild
+rpmbuild -bb $HOME/rpmbuild/SPECS/devEnvironment.spec
+mkdir rpm
+mv $HOME/rpmbuild/RPMS/* rpm/
