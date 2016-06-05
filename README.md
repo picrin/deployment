@@ -61,4 +61,4 @@ There are drawbacks. If you're targeting multiple distros you have to esentially
 
 * You can `systemctl enable websitego`. This will make the website always start at system bootup, so you won't have to think about it.
 * If things go wrong `journalctl --unit=websitego` will give you the logs produced by the website
-* If you decide to deploy a new version of your website, modify `website.spec`, `devEnvironment.spec`, `makeDevEnvironment` and `makerpm` with a new, higher rpm version number (you can even automate it, e.g. on each build) and repeat the build process above to update the package on the system hosting the website. `dnf` should figure out any file additions/ changes/ deletions.
+* If you decide to deploy a new version of your website or devEnvironment edit one of `version/patch`, `version/minor` or `version/major` to a higher number. Do the build/deployment process above as normal to update the package on the system hosting the website. `dnf` will figure out any file additions/ changes/ deletions.

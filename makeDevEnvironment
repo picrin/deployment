@@ -1,8 +1,10 @@
 set -e
+export MAJOR=$(cat version/major)
+export MINOR=$(cat version/minor)
+export PATCH=$(cat version/patch)
 rm -fr rpm/
 mkdir -p rpm/BUILD
-mkdir -p rpm/BUILDROOT/websitego-0.0-1.x86_64/usr/bin/
-mkdir -p rpm/BUILDROOT/websitego-0.0-1.x86_64/usr/lib/systemd/system/
+mkdir -p rpm/BUILDROOT
 mkdir -p rpm/SOURCES
 mkdir -p rpm/SPECS
 mkdir -p rpm/SRPMS

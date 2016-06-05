@@ -1,6 +1,9 @@
+%define MAJOR %(echo $MAJOR)
+%define MINOR %(echo $MINOR)
+%define PATCH %(echo $PATCH)
 Name:           devEnvironment
-Version:        0.0
-Release:        1
+Version:        %{MAJOR}.%{MINOR}
+Release:        %{PATCH}
 Summary:        Dev env for the project
 
 License:        GPL

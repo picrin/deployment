@@ -1,16 +1,20 @@
 set -e
+export MAJOR=$(cat version/major)
+export MINOR=$(cat version/minor)
+export PATCH=$(cat version/patch)
 go build websitego.go
+rpmName=websitego-${MAJOR}.${MINOR}-${PATCH}.x86_64
 rm -fr rpm/
 mkdir -p rpm/BUILD
-mkdir -p rpm/BUILDROOT/websitego-0.0-1.x86_64/usr/bin/
-mkdir -p rpm/BUILDROOT/websitego-0.0-1.x86_64/usr/lib/systemd/system/
+mkdir -p rpm/BUILDROOT/${rpmName}/usr/bin/
+mkdir -p rpm/BUILDROOT/${rpmName}/usr/lib/systemd/system/
 mkdir -p rpm/SOURCES
 mkdir -p rpm/SPECS
 mkdir -p rpm/SRPMS
 mkdir -p rpm/RPMS
-cp websitego rpm/BUILDROOT/websitego-0.0-1.x86_64/usr/bin/
+cp websitego rpm/BUILDROOT/${rpmName}/usr/bin/
 cp websitego.spec rpm/SPECS
-cp websitego.service rpm/BUILDROOT/websitego-0.0-1.x86_64/usr/lib/systemd/system/
+cp websitego.service rpm/BUILDROOT/${rpmName}/usr/lib/systemd/system/
 rm -fr $HOME/rpmbuild
 mv rpm $HOME/rpmbuild
 rpmbuild -bb $HOME/rpmbuild/SPECS/websitego.spec

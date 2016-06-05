@@ -1,6 +1,9 @@
+%define MAJOR %(echo $MAJOR)
+%define MINOR %(echo $MINOR)
+%define PATCH %(echo $PATCH)
 Name:           websitego
-Version:        0.0
-Release:        1
+Version:        %{MAJOR}.%{MINOR}
+Release:        %{PATCH}
 Summary:        Simple website in go
 
 License:        GPL
