@@ -18,7 +18,8 @@ Systemd is arguably the best way to deploy long-running services, such as web ap
 It doesn't mean there are no alternatives!
 
  * You should also consider docker. Be warned that it won't be easy, docker on itself won't be enough (you'll have to use something like docker-compose or kubernetes), and many things you're used to won't work or will work differently. For a balanced and outsider opinion have a look at [Dan Walsh's presentation on systemd vs docker](https://www.youtube.com/watch?v=35biGFCWdlQ).
- * Check out how to deploy with vagrant [danieltcv](https://github.com/danieltcv/product_reviews/tree/master)
+ * Check out how to deploy with vagrant and ansible [danieltcv](https://github.com/danieltcv/product_reviews/tree/master)
+ * Check out other container technology, like CoreOS's rck. I've never used it, but it certainly sounds interesting.
 
 ## Why rpm (deb, any other distro-specific package)?
 
