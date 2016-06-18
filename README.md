@@ -13,11 +13,12 @@ Systemd is arguably the best way to deploy long-running services, such as web ap
  * Systemd is powerful. It supports complicated multi-component deploys, it has powerful component initiation and dependency management, including lazy dependency management via socket initialisation.
  * Distro developers, Package mainteiners, Dev Ops and such have more arguments to convince you, if you need: [Arch Linux](https://bbs.archlinux.org/viewtopic.php?pid=1149530#p1149530), [Core OS](https://coreos.com/using-coreos/systemd/), [Running lightweight containers in systemd](https://fedoraproject.org/wiki/Features/SystemdLightweightContainers). You'll find people who disagree: [Docker vs Systemd](http://thenewstack.io/why-docker-containers-and-systemd-drive-a-wedge-through-the-concept-of-linux-distributions/)
  * You can reload your service without restarting it. It's a big plus if availability is a concern.
+ * If a power switch goes off, your stuff will be persisted on disk. That's unlike docker, which doesn't persist the uppermost AUFS layer.
 
 It doesn't mean there are no alternatives!
 
- * You should also consider docker. Be warned that it won't be easy, docker on itself won't be enough (you'll have to use something like swarm or kubernetes), and many things you're used to won't work or will work differently. For a balanced and outsider opinion have a look at [Dan Walsh's presentation on systemd vs docker](https://www.youtube.com/watch?v=35biGFCWdlQ).
- * Checkout how to deploy with vagrant [danieltcv](https://github.com/danieltcv/product_reviews/tree/master)
+ * You should also consider docker. Be warned that it won't be easy, docker on itself won't be enough (you'll have to use something like docker-compose or kubernetes), and many things you're used to won't work or will work differently. For a balanced and outsider opinion have a look at [Dan Walsh's presentation on systemd vs docker](https://www.youtube.com/watch?v=35biGFCWdlQ).
+ * Check out how to deploy with vagrant [danieltcv](https://github.com/danieltcv/product_reviews/tree/master)
 
 ## Why rpm (deb, any other distro-specific package)?
 
@@ -30,7 +31,7 @@ There are drawbacks. If you're targeting multiple distros you have to esentially
 
 ## Tutorial
 
-`websitego.go` contains golang code of a "hello world" web application, which binds to localhost:8080 and displays some text on GET / HTTP request. We show a way to
+`websitego.go` contains golang code of a "hello world" web application, which binds to localhost:8080 and returns some text on HTTP GET request. We show a way to
 * Make an rpm with all development dependencies (everything that is required to build the project).
 * Install it.
 * Make an rpm with the website we want to deploy, again with all dependencies.
